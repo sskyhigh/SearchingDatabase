@@ -10,6 +10,7 @@ public class SearchApp extends JFrame {
     private JScrollPane pane;
     private JTable table;
     private JLabel textHolder;
+    private JButton addEmployeeButton;
     private String lastName;
     private _EmployeeD employeeD;
 
@@ -44,9 +45,28 @@ public class SearchApp extends JFrame {
         setVisible(true);
         setSize(400, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        addEmployeeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AddEmployeeForm addEmployeeForm = new AddEmployeeForm(SearchApp.this, employeeD);
+                addEmployeeForm.setVisible(true);
+            }
+        });
     }
 
     public static void main(String[] args) throws Exception {
         SearchApp app = new SearchApp();
+    }
+
+    public void refreshEmployee() {
+        try{
+            List <Employee> employees = employeeD.getAllEmployees();
+
+            // creating the model and update the "table"
+            EmployeeTable model = new EmployeeTable(employees);
+        }catch(Exception exception){
+
+        }
     }
 }

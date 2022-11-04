@@ -23,6 +23,21 @@ public class _EmployeeD {
         }
     }
 
+    public void addEmployee(Employee employee) throws Exception {
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement("insert into employees" + "(first_name, last_name, email, salary)" + "values (?, ?, ?, ?)");
+            statement.setString(1, employee.getFirstName());
+            statement.setString(2, employee.getLastName());
+            statement.setString(3, employee.getEmail());
+            statement.setBigDecimal(4, employee.getSalary());
+
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public List<Employee> getAllEmployees() throws Exception {
         List<Employee> list = new ArrayList<>();
 
