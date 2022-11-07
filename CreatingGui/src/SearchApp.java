@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -12,7 +13,7 @@ public class SearchApp extends JFrame {
     private JLabel textHolder;
     private JButton addEmployeeButton;
     private String lastName;
-    private _EmployeeD employeeD;
+    private final _EmployeeD employeeD;
 
     public SearchApp() throws Exception {
         employeeD = new _EmployeeD();
@@ -60,13 +61,15 @@ public class SearchApp extends JFrame {
     }
 
     public void refreshEmployee() {
-        try{
-            List <Employee> employees = employeeD.getAllEmployees();
-
+        try {
+            List<Employee> employees = employeeD.getAllEmployees();
             // creating the model and update the "table"
             EmployeeTable model = new EmployeeTable(employees);
-        }catch(Exception exception){
-
+            table.setModel(model);
+        } catch (Exception exception) {
+            JOptionPane.showMessageDialog(this, "Error: " + exception, "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
+
 }
