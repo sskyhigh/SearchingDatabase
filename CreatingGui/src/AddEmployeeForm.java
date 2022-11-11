@@ -115,5 +115,4 @@ public class AddEmployeeForm extends JFrame {
                     "Error at: ", JOptionPane.ERROR_MESSAGE);
         }
     }
-
 }
