@@ -2,6 +2,7 @@ import javax.swing.table.AbstractTableModel;
 import java.util.List;
 
 public class EmployeeTable extends AbstractTableModel {
+    public static final int OBJECT_COL = -1;
     private static final int LAST_NAME_COL = 0;
     private static final int FIRST_NAME_COL = 1;
     private static final int EMAIL_COL = 2;
@@ -42,6 +43,8 @@ public class EmployeeTable extends AbstractTableModel {
                 return temp.getEmail();
             case SALARY_COL:
                 return temp.getSalary();
+            case OBJECT_COL:
+                return temp;
             default:
                 return temp.getLastName();
         }

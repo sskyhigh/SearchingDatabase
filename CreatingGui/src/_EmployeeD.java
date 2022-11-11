@@ -23,6 +23,26 @@ public class _EmployeeD {
         }
     }
 
+    public void updateEmployee(Employee employee) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement("update employees" +
+                    "set first_name=?, last_name=?, email=?, salary=?" + "where id=?");
+
+            // setting the parameters:
+            preparedStatement.setString(1, employee.getFirstName());
+            preparedStatement.setString(2, employee.getLastName());
+            preparedStatement.setString(3, employee.getEmail());
+            preparedStatement.setBigDecimal(4, employee.getSalary());
+            preparedStatement.setInt(5, employee.getID());
+
+            //Updating the database:
+            preparedStatement.executeUpdate();
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
     public void addEmployee(Employee employee) throws Exception {
         PreparedStatement statement = null;
         try {

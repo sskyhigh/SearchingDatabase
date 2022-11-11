@@ -1,22 +1,28 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import javax.swing.JTable;
+
 
 public class SearchApp extends JFrame {
     private JPanel MainPanel;
     private JButton searchButton;
+    private JButton addEmployeeButton;
     private JTextField userData;
     private JScrollPane pane;
     private JTable table;
     private JLabel textHolder;
-    private JButton addEmployeeButton;
+    private JButton updateButton;
     private String lastName;
-    private final _EmployeeD employeeD;
+    private _EmployeeD employeeD;
 
     public SearchApp() throws Exception {
-        employeeD = new _EmployeeD();
+        try {
+            employeeD = new _EmployeeD();
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -35,9 +41,8 @@ public class SearchApp extends JFrame {
                         throw new RuntimeException(ex);
                     }
                 }
-                for (Employee temp : employees) {
-                    System.out.println(temp);
-                }
+                EmployeeTable table1 = new EmployeeTable(employees);
+                table.setModel(table1);
             }
         });
         searchButton.setFocusable(false);
@@ -52,12 +57,35 @@ public class SearchApp extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 AddEmployeeForm addEmployeeForm = new AddEmployeeForm(SearchApp.this, employeeD);
                 addEmployeeForm.setVisible(true);
+                dispose();
+            }
+        });
+        updateButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                int row = table.getSelectedRow();
+                int col = table.getSelectedColumn();
+                if (row < 0) {
+                    JOptionPane.showMessageDialog(SearchApp.this, "You need to select an employee",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                Employee temp = (Employee) table.getValueAt(row, EmployeeTable.OBJECT_COL);
+                AddEmployeeForm addEmployeeForm = new AddEmployeeForm(SearchApp.this,
+                        employeeD, temp, true);
             }
         });
     }
 
     public static void main(String[] args) throws Exception {
-        SearchApp app = new SearchApp();
+        try {
+            SearchApp app = new SearchApp();
+            app.setVisible(true);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void refreshEmployee() {
