@@ -98,6 +98,7 @@ public class AddEmployeeForm extends JFrame {
         }
 
         try {
+            // saves to database.
             if (update) {
                 employeeD.updateEmployee(temp);
             } else {
@@ -108,7 +109,7 @@ public class AddEmployeeForm extends JFrame {
             _searchApp.refreshEmployee();
 
             // show that the employee was added:
-            JOptionPane.showMessageDialog(_searchApp, "Employee has been added", "Employee added",
+            JOptionPane.showMessageDialog(_searchApp, "Employee info has been updated", "Notification",
                     JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(_searchApp, "Error Saving the employee: " + e.getMessage(),

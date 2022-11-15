@@ -24,20 +24,20 @@ public class _EmployeeD {
     }
 
     public void updateEmployee(Employee employee) throws SQLException {
-        PreparedStatement preparedStatement = null;
+        PreparedStatement Statement = null;
         try {
-            preparedStatement = connection.prepareStatement("update employees" +
+            Statement = connection.prepareStatement("update employees" +
                     "set first_name=?, last_name=?, email=?, salary=?" + "where id=?");
 
             // setting the parameters:
-            preparedStatement.setString(1, employee.getFirstName());
-            preparedStatement.setString(2, employee.getLastName());
-            preparedStatement.setString(3, employee.getEmail());
-            preparedStatement.setBigDecimal(4, employee.getSalary());
-            preparedStatement.setInt(5, employee.getID());
+            Statement.setString(1, employee.getFirstName());
+            Statement.setString(2, employee.getLastName());
+            Statement.setString(3, employee.getEmail());
+            Statement.setBigDecimal(4, employee.getSalary());
+            Statement.setInt(5, employee.getID());
 
             //Updating the database:
-            preparedStatement.executeUpdate();
+            Statement.executeUpdate();
         } catch (Exception exception) {
             exception.printStackTrace();
         }
@@ -66,7 +66,7 @@ public class _EmployeeD {
 
         try {
             statement = connection.createStatement();
-            resultSet = statement.executeQuery("select * from employees");
+            resultSet = statement.executeQuery("select * from demo.employees order by last_name");
 
             while (resultSet.next()) {
                 Employee temp = convertToEmployee(resultSet);

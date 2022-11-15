@@ -8,13 +8,13 @@ public class EmployeeTable extends AbstractTableModel {
     private static final int EMAIL_COL = 2;
     private static final int SALARY_COL = 3;
 
-    private String[] columnNames = {"Last Name", "First Name",
-            "Email, Salary"};
+    private final String[] columnNames = {"Last Name", "First Name",
+            "Email", "Salary"};
 
-    private List<Employee> employees;
+    private final List<Employee> employees;
 
-    public EmployeeTable(List<Employee> TheEmployees) {
-        employees = TheEmployees;
+    public EmployeeTable(List<Employee> employees1) {
+        employees = employees1;
     }
 
     public String getColumnName(int column) {
@@ -49,7 +49,6 @@ public class EmployeeTable extends AbstractTableModel {
                 return temp.getLastName();
         }
     }
-
     @Override
     public Class getColumnClass(int a) {
         return getValueAt(0, a).getClass();

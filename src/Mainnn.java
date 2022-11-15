@@ -8,7 +8,7 @@ public class Mainnn {
             ResultSet resultSet = statement.executeQuery("select * from demo.employees");
 
             while (resultSet.next()) {
-                System.out.println(resultSet.getString("Last_Name") + " " + resultSet.getString("ID"));
+                System.out.println(resultSet.getString("Last_Name") + " " + resultSet.getString("salary"));
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -49,7 +49,7 @@ public class SearchApp extends JFrame {
         setContentPane(MainPanel);
         setTitle("Search feature");
         setVisible(true);
-        setSize(400, 400);
+        setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         addEmployeeButton.addActionListener(new ActionListener() {
@@ -65,7 +65,6 @@ public class SearchApp extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 int row = table.getSelectedRow();
-                int col = table.getSelectedColumn();
                 if (row < 0) {
                     JOptionPane.showMessageDialog(SearchApp.this, "You need to select an employee",
                             "Error", JOptionPane.ERROR_MESSAGE);
@@ -99,5 +98,4 @@ public class SearchApp extends JFrame {
                     JOptionPane.ERROR_MESSAGE);
         }
     }
-
 }
