@@ -24,10 +24,12 @@ public class _EmployeeD {
     }
 
     public void updateEmployee(Employee employee) throws SQLException {
+        // words like "update", "set", "where"
+        // must be blue in order to take effect.
         PreparedStatement Statement = null;
         try {
             Statement = connection.prepareStatement("update employees" +
-                    "set first_name=?, last_name=?, email=?, salary=?" + "where id=?");
+                    " set first_name=?, last_name=?, email=?, salary=?" + " where id=?");
 
             // setting the parameters:
             Statement.setString(1, employee.getFirstName());

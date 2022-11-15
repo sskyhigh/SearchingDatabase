@@ -4,7 +4,7 @@ import java.sql.Statement;
 
 public class Update_Database {
     public static void main(String[] args) {
-        String url = "jdbc:mysql://localhost:3306/database_v1";
+        String url = "jdbc:mysql://localhost:3306/demo.employees";
         String username = "root";
         String password = "Magnum12!";
 
@@ -13,7 +13,7 @@ public class Update_Database {
             Statement statement = connection.createStatement();
             String UpdateData = "update data" +
                     " set Email = 'jimmy1@gmail.com' " +
-                    "where ID = 20";
+                    "where ID = 13";
 
             statement.executeUpdate(UpdateData);
             System.out.println("update completed. ");

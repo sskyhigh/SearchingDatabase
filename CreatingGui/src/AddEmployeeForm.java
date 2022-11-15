@@ -89,8 +89,8 @@ public class AddEmployeeForm extends JFrame {
         if (update) {
             temp = previousEmp;
 
-            temp.setFirstName(firstName);
             temp.setLastName(lastName);
+            temp.setFirstName(firstName);
             temp.setEmail(email);
             temp.setSalary(salary);
         } else {
