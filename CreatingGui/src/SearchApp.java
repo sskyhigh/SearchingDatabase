@@ -14,6 +14,7 @@ public class SearchApp extends JFrame {
     private JTable table;
     private JLabel textHolder;
     private JButton updateButton;
+    private JButton deleteButton;
     private String lastName;
     private _EmployeeD employeeD;
 
@@ -37,9 +38,7 @@ public class SearchApp extends JFrame {
                 } else {
                     try {
                         employees = employeeD.getAllEmployees();
-                    } catch (Exception ex) {
-                        throw new RuntimeException(ex);
-                    }
+                    } catch (Exception ex) {throw new RuntimeException(ex);}
                 }
                 EmployeeTable table1 = new EmployeeTable(employees);
                 table.setModel(table1);
@@ -65,13 +64,44 @@ public class SearchApp extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 int row = table.getSelectedRow();
                 if (row < 0) {
-                    JOptionPane.showMessageDialog(SearchApp.this, "You need to select an employee",
-                            "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(SearchApp.this, "You need to select an " +
+                            "employee", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 Employee temp = (Employee) table.getValueAt(row, EmployeeTable.OBJECT_COL);
-                AddEmployeeForm addEmployeeForm = new AddEmployeeForm(SearchApp.this,
-                        employeeD, temp, true);
+                AddEmployeeForm addEmployeeForm = new AddEmployeeForm(SearchApp.this, employeeD,
+                        temp, true);
+            }
+        });
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    // ensuring that a row is selected
+                    int row = table.getSelectedRow();
+                    if (row < 0) {
+                        JOptionPane.showMessageDialog(SearchApp.this, "You must select someone.",
+                                "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+
+                    int responseFromUser = JOptionPane.showConfirmDialog(SearchApp.this, "Delete "
+                            + "this Employee?", "Delete", JOptionPane.YES_NO_OPTION,
+                            JOptionPane.QUESTION_MESSAGE);
+
+                    if (responseFromUser != JOptionPane.YES_NO_OPTION) {return;}
+                    Employee employee = (Employee) table.getValueAt(row, EmployeeTable.OBJECT_COL);
+                    employeeD.deleteEmployee(employee.getID());
+                    refreshEmployee();
+
+                    JOptionPane.showMessageDialog(SearchApp.this, "Employee has been removed",
+                            "Success", JOptionPane.INFORMATION_MESSAGE);
+
+                } catch (Exception exception) {
+                    JOptionPane.showMessageDialog(SearchApp.this,
+                            "Error deleting employee: " + exception.getMessage(), "Error",
+                            JOptionPane.WARNING_MESSAGE);
+                }
             }
         });
     }
@@ -81,15 +111,14 @@ public class SearchApp extends JFrame {
             SearchApp app = new SearchApp();
             app.setVisible(true);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        } catch (Exception e) {e.printStackTrace();}
     }
 
     public void refreshEmployee() {
         try {
             List<Employee> employees = employeeD.getAllEmployees();
             // creating the model and update the "table"
+
             EmployeeTable model = new EmployeeTable(employees);
             table.setModel(model);
         } catch (Exception exception) {
