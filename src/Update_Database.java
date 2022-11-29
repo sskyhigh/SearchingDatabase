@@ -17,8 +17,6 @@ public class Update_Database {
 
             statement.executeUpdate(UpdateData);
             System.out.println("update completed. ");
-        } catch (Exception exception) {
-            exception.printStackTrace();
-        }
+        } catch (Exception exception) {exception.printStackTrace();}
     }
 }

@@ -21,24 +21,21 @@ public class SearchApp extends JFrame {
     public SearchApp() throws Exception {
         try {
             employeeD = new _EmployeeD();
-        } catch (Exception exception) {
-            exception.printStackTrace();
-        }
+        } catch (Exception exception) {exception.printStackTrace();}
+
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 lastName = userData.getText();
                 List<Employee> employees = null;
                 if (lastName != null && lastName.trim().length() > 0) {
-                    try {
-                        employees = employeeD.searchEmployees(lastName);
-                    } catch (Exception ex) {
+                    try {employees = employeeD.searchEmployees(lastName);} catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }
                 } else {
-                    try {
-                        employees = employeeD.getAllEmployees();
-                    } catch (Exception ex) {throw new RuntimeException(ex);}
+                    try {employees = employeeD.getAllEmployees();} catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
                 EmployeeTable table1 = new EmployeeTable(employees);
                 table.setModel(table1);
@@ -110,7 +107,6 @@ public class SearchApp extends JFrame {
         try {
             SearchApp app = new SearchApp();
             app.setVisible(true);
-
         } catch (Exception e) {e.printStackTrace();}
     }
 

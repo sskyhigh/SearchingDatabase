@@ -19,9 +19,7 @@ public class _EmployeeD {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo", "root",
                     "Magnum12!");
             System.out.println("Connected to database" + address);
-        } catch (Exception exception) {
-            exception.printStackTrace();
-        }
+        } catch (Exception exception) {exception.printStackTrace();}
     }
 
     // this gets the info from the database
@@ -36,12 +34,8 @@ public class _EmployeeD {
     }
 
     private static void close(Statement statement, ResultSet set) throws SQLException {
-        if (statement != null) {
-            statement.close();
-        }
-        if (set != null) {
-            set.close();
-        }
+        if (statement != null) statement.close();
+        if (set != null) set.close();
     }
 
     public void deleteEmployee(int empID) throws SQLException {

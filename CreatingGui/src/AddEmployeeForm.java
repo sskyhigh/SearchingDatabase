@@ -17,8 +17,8 @@ public class AddEmployeeForm extends JFrame {
     private Employee previousEmp = null;
     private boolean update = false;
 
-    public AddEmployeeForm(SearchApp searchApp, _EmployeeD theEmployee,
-                           Employee previous, boolean update1) {
+    public AddEmployeeForm(SearchApp searchApp, _EmployeeD theEmployee, Employee previous,
+                           boolean update1) {
         this();
         employeeD = theEmployee;
         _searchApp = searchApp;
@@ -33,13 +33,6 @@ public class AddEmployeeForm extends JFrame {
 
     public AddEmployeeForm(SearchApp searchApp, _EmployeeD employeeD) {
         this(searchApp, employeeD, null, false);
-    }
-
-    public void populateData(Employee employee) {
-        _FirstName.setText(employee.getFirstName());
-        _LastName.setText(employee.getLastName());
-        _Email.setText(employee.getEmail());
-        Salary.setText(employee.getSalary().toString());
     }
 
     public AddEmployeeForm() {
@@ -59,6 +52,13 @@ public class AddEmployeeForm extends JFrame {
                 setVisible(false);
             }
         });
+    }
+
+    public void populateData(Employee employee) {
+        _FirstName.setText(employee.getFirstName());
+        _LastName.setText(employee.getLastName());
+        _Email.setText(employee.getEmail());
+        Salary.setText(employee.getSalary().toString());
     }
 
     protected BigDecimal convertingStrToDecimal(String salary) {
@@ -93,27 +93,24 @@ public class AddEmployeeForm extends JFrame {
             temp.setFirstName(firstName);
             temp.setEmail(email);
             temp.setSalary(salary);
-        } else {
-            temp = new Employee(lastName, firstName, email, salary);
-        }
+        } else temp = new Employee(lastName, firstName, email, salary);
 
         try {
             // saves to database.
-            if (update) {
-                employeeD.updateEmployee(temp);
-            } else {
-                employeeD.addEmployee(temp);
-            }
+            if (update) employeeD.updateEmployee(temp);
+            else employeeD.addEmployee(temp);
+
             setVisible(false);
             dispose();
             _searchApp.refreshEmployee();
 
             // show that the employee was added:
-            JOptionPane.showMessageDialog(_searchApp, "Employee info has been updated", "Notification",
-                    JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(_searchApp, "Employee info has been updated",
+                    "Notification", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(_searchApp, "Error Saving the employee: " + e.getMessage(),
-                    "Error at: ", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(_searchApp,
+                    "Error Saving the employee: " + e.getMessage(), "Error at: ",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 }
