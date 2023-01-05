@@ -22,8 +22,6 @@ public class DeletingData {
             }
             System.out.println("Delete Complete");
 
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        } catch (Exception ex) {ex.printStackTrace();}
     }
 }

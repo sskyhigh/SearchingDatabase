@@ -1,9 +1,11 @@
+// searchApp is the main file, has all the information inside.
+// Run this for the table to load.
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.JTable;
-
 
 public class SearchApp extends JFrame {
     private JPanel MainPanel;
@@ -19,9 +21,9 @@ public class SearchApp extends JFrame {
     private _EmployeeD employeeD;
 
     public SearchApp() throws Exception {
-        try {
-            employeeD = new _EmployeeD();
-        } catch (Exception exception) {exception.printStackTrace();}
+        try {employeeD = new _EmployeeD();} catch (Exception exception) {
+            exception.printStackTrace();
+        }
 
         searchButton.addActionListener(new ActionListener() {
             @Override

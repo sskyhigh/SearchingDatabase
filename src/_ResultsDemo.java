@@ -25,27 +25,17 @@ public class _ResultsDemo {
                 System.out.println("Is auto increment: " + setMetaData.isAutoIncrement(col));
                 System.out.println();
             }
-        } catch (Exception exception) {
-            exception.printStackTrace();
-        } finally {
-            close(connection, statement, resultSet);
-        }
+        } catch (Exception exception) {exception.printStackTrace();
+        } finally {close(connection, statement, resultSet);}
     }
 
+    // as the name stated:　closes the connection. 
     private static void close(Connection connection,
                               Statement statement, ResultSet set) throws SQLException {
         try {
-            if (connection != null) {
-                connection.close();
-            }
-            if (statement != null) {
-                statement.close();
-            }
-            if (set != null) {
-                set.close();
-            }
-        } catch (Exception exception) {
-            exception.printStackTrace();
-        }
+            if (connection != null) connection.close();
+            if (statement != null) statement.close();
+            if (set != null) set.close();
+        } catch (Exception exception) {exception.printStackTrace();}
     }
 }

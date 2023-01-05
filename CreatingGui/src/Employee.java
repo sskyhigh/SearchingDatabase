@@ -2,9 +2,7 @@ import java.math.BigDecimal;
 
 public class Employee {
     private int ID;
-    private String lastName;
-    private String firstName;
-    private String email;
+    private String lastName, firstName, email;
     private BigDecimal salary;
 
     public Employee(String lastName, String firstName, String email, BigDecimal salary) {

@@ -45,10 +45,7 @@ public class DepartmentIncrease {
 
                 System.out.printf("%s, %s, %.2f, %s\n", lastName, firstName, sal, depart);
             }
-
-        } catch (Exception exception) {
-            exception.printStackTrace();
-        }
+        } catch (Exception exception) {exception.printStackTrace();}
     }
 }
 

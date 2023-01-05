@@ -10,8 +10,6 @@ public class Mainnn {
             while (resultSet.next()) {
                 System.out.println(resultSet.getString("Last_Name") + " " + resultSet.getString("salary"));
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        } catch (Exception e) {e.printStackTrace();}
     }
 }

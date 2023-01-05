@@ -18,8 +18,6 @@ public class InputData {
             statement.executeUpdate(addSQL);
             System.out.println("Data has been added.");
 
-        } catch (Exception exception) {
-            exception.printStackTrace();
-        }
+        } catch (Exception exception) {exception.printStackTrace();}
     }
 }

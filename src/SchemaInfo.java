@@ -33,19 +33,13 @@ public class SchemaInfo {
             while (resultSet.next()) {
                 System.out.println(resultSet.getString("COLUMN_NAME"));
             }
-        } catch (Exception exception) {
-            exception.printStackTrace();
-        } finally {
+        } catch (Exception exception) {exception.printStackTrace();} finally {
             close(connection, resultSet);
         }
     }
 
     private static void close(Connection connection, ResultSet set) throws SQLException {
-        if (connection != null) {
-            connection.close();
-        }
-        if (set != null) {
-            set.close();
-        }
+        if (connection != null) connection.close();
+        if (set != null) set.close();
     }
 }

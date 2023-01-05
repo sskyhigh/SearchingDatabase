@@ -10,7 +10,8 @@ public class _TransDemo {
         Connection connection = null;
         Statement statement = null;
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo", "root", "Magnum12!");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo", "root",
+                    "Magnum12!");
             connection.setAutoCommit(false);
 
             String HR = "HR";
@@ -23,7 +24,8 @@ public class _TransDemo {
             statement = connection.createStatement();
             statement.executeUpdate("delete from employees where department= 'HR'");
 
-            statement.executeUpdate("update employees set salary= 300000 where department='Engineering'");
+            statement.executeUpdate("update employees set salary= 300000 where " + "department" +
+                    "='Engineering'");
             System.out.println("\nTransaction is ready to update");
 
             boolean confirm = askUserToConfirm();
@@ -37,9 +39,7 @@ public class _TransDemo {
             System.out.println("Salaries after updating: \n");
             showSalaries(connection, HR);
             showSalaries(connection, Engineer);
-        } catch (Exception exception) {
-            exception.printStackTrace();
-        } finally {
+        } catch (Exception exception) {exception.printStackTrace();} finally {
             close(connection, statement, null);
         }
     }
@@ -59,7 +59,8 @@ public class _TransDemo {
 
         System.out.println("Salaries for department: \n");
         try {
-            preparedStatement = connection.prepareStatement("select * from employees where department=?");
+            preparedStatement = connection.prepareStatement("select * from employees where " +
+                    "department=?");
             preparedStatement.setString(1, role);
 
             set = preparedStatement.executeQuery();
@@ -71,33 +72,20 @@ public class _TransDemo {
 
                 System.out.printf("%s, %s, %.2f, %s\n", lastName, firstName, sal, depart);
             }
-        } catch (Exception exception) {
-            exception.printStackTrace();
-        } finally {
+        } catch (Exception exception) {exception.printStackTrace();} finally {
             close(preparedStatement, set);
         }
     }
 
-    public static void close(Connection connection, Statement statement,
-                             ResultSet resultSet) throws SQLException {
-        if (connection != null) {
-            connection.close();
-        }
-        if (statement != null) {
-            statement.close();
-        }
-        if (resultSet != null) {
-            resultSet.close();
-        }
+    public static void close(Connection connection, Statement statement, ResultSet resultSet) throws SQLException {
+        if (connection != null) connection.close();
+        if (statement != null) statement.close();
+        if (resultSet != null) resultSet.close();
     }
 
     public static void close(Statement statement, ResultSet set) throws SQLException {
-        if (set != null) {
-            set.close();
-        }
-        if (statement != null) {
-            statement.close();
-        }
+        if (set != null) set.close();
+        if (statement != null) statement.close();
     }
 }
 

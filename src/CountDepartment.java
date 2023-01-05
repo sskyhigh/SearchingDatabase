@@ -25,8 +25,6 @@ public class CountDepartment {
             int count=  callableStatement.getInt(2);
             System.out.println(count + "count ");
 
-        } catch (Exception exception) {
-            exception.printStackTrace();
-        }
+        } catch (Exception exception) {exception.printStackTrace();}
     }
 }

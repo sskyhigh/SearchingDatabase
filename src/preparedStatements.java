@@ -16,15 +16,9 @@ public class preparedStatements {
         } catch (Exception exception) {
             exception.printStackTrace();
         } finally {
-            if (resultSet != null) {
-                resultSet.close();
-            }
-            if (connection != null) {
-                connection.close();
-            }
-            if (statement != null) {
-                statement.close();
-            }
+            if (resultSet != null) resultSet.close();
+            if (connection != null) connection.close();
+            if (statement != null) statement.close();
         }
     }
 
