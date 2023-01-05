@@ -16,16 +16,12 @@ public class MetaData_Basics {
 
             System.out.println("JDBC driver name: " + metaData.getDriverName());
             System.out.println("JDBC driver version: " + metaData.getDriverVersion());
-        } catch (Exception exception) {
-            exception.printStackTrace();
-        } finally {
+        } catch (Exception exception) {exception.printStackTrace();} finally {
             close(connection);
         }
     }
 
     private static void close(Connection connection) throws SQLException {
-        if (connection != null) {
-            connection.close();
-        }
+        if (connection != null) connection.close();
     }
 }
